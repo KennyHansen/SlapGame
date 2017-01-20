@@ -41,7 +41,15 @@ var items = {
     shield4:new Item("Shield of Master Blocking", {block:20, bonusHealth:50}, "This blocks 20 damage")
 }
 
-
+function giveItem(player, itemName) {
+  debugger
+  for(var item in items) {
+    if (items[item] == itemName || item == itemName) {
+      player.item = items[item]
+      return
+    }
+  }
+}
 
 function onSlap(attacker, target){
   dealDamage(attacker, target, 1, 'Slap')
@@ -66,10 +74,16 @@ function onHadouken(attacker, target){
 function dealDamage(attacker, target, damage, attackType) {
   var health = target.health
 
-  // Add damage filters
   if (!attacker.isAlive) {
     console.log(attacker.name + ' is down, the fight is over!')
   } else if (target.isAlive) {
+      // Add damage filters
+      if (target.item && target.item.value.block) {
+        block = target.item.value.block
+        damage = damage - block
+        if (damage < 0) damage = 0; 
+      }
+
       // Health Check
       if(health <= damage){
         //Don't let the health drop below 0
