@@ -1,12 +1,22 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Slap Object Game</title>
-	<link rel="stylesheet" href="">
-	<link rel="stylesheet" href="">
-	
+	<meta charset="UTF-8">
+	<title>Slap Fighter</title>
+	<link rel="stylesheet" href="game.css">
 </head>
 <body>
-	
-	<script src=""></script>
+	<div class="stage">
+		<div class="player">
+			<button onclick="onSlap()">Slap</button>
+			<button onclick= "onPunch()">Punch</button>
+			<button onclick= "onKick()">Kick</button>
+			<button onclick= "onHadouken()"><img src="http://i598.photobucket.com/albums/tt68/xXONEXx/Decorated%20images/hadouken.png" height="80" /></button>
+		</div>
+	</div>
+	<div class="dummy">
+		<h1 id="health">100</h1>
+	</div>
+	<script src="game.js"></script>
 </body>
 </html>
