@@ -10,6 +10,7 @@ var ken = {
     hadouken: 40
   },
   mobility: 35,
+  isAlive: true,
   sprite:'ken.png'
 }
 
@@ -23,6 +24,7 @@ var ryu = {
     hadouken: 60
   },
   mobility: 55,
+  isAlive: true,
   sprite:'ryu.png'
 }
 
@@ -41,23 +43,23 @@ var items = {
 
 
 
-function onSlap(){
-  dealDamage(ryu, ken, 1, 'Slap')
+function onSlap(attacker, target){
+  dealDamage(attacker, target, 1, 'Slap')
   //playSound('slap')
 }
 
-function onPunch(){
-  dealDamage(ryu, ken, ryu.attacks['punch'], 'Punch')
+function onPunch(attacker, target){
+  dealDamage(attacker, target, attacker.attacks['punch'], 'Punch')
   //playSound('punch')
 }
 
-function onKick(){
-  dealDamage(ryu, ken, ryu.attacks['kick'], 'Kick')
+function onKick(attacker, target){
+  dealDamage(attacker, target, attacker.attacks['kick'], 'Kick')
   //playSound('kick')
 }
 
-function onHadouken(){
-  dealDamage(ryu, ken, ryu.attacks['hadouken'], 'HADOUKEN')
+function onHadouken(attacker, target){
+  dealDamage(attacker, target, attacker.attacks['hadouken'], 'HADOUKEN')
   playSound('hadouken')
 }
 
@@ -65,18 +67,24 @@ function dealDamage(attacker, target, damage, attackType) {
   var health = target.health
 
   // Add damage filters
-
-  // Health Check
-  if(health <= damage){
-        //Don't let the health drop below 0
-        console.log(attacker.name + " hits " + target.name + " with " + attackType + " for " + health + " damage")
-        console.log("Player is dead!")
-        target.health = 0;
-    }else{
-        console.log(attacker.name + " hits " + target.name + " with " + attackType + " for " + damage + " damage")
-        target.health = +(health - damage).toFixed(1);
+  if (!attacker.isAlive) {
+    console.log(attacker.name + ' is down, the fight is over!')
+  } else if (target.isAlive) {
+      // Health Check
+      if(health <= damage){
+          //Don't let the health drop below 0
+          console.log(attacker.name + " hits " + target.name + " with " + attackType + " for " + health + " damage")
+          console.log(attacker.name + ' knocked out ' + target.name + '!!!')
+          target.health = 0;
+          target.isAlive = false;
+      }else{
+          console.log(attacker.name + " hits " + target.name + " with " + attackType + " for " + damage + " damage")
+          target.health = +(health - damage).toFixed(1);
+      }
+      updatePlayer(target);
+    } else {
+      console.log(target.name + ' is down, the fight is over!')
     }
-    updatePlayer(ken);
 }
 
 function updatePlayer(player) {
