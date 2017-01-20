@@ -67,7 +67,7 @@ h1{
 
 .sprite{
   margin-top: 35%;
-  padding-bottom: 20px;
-  background: url(http://network.mugenguild.com/guild/stances/ss1_bonus.gif) no-repeat;
+  display:flex;
+  justify-content: space-around;
 }
 

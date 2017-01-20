@@ -72,14 +72,14 @@ function dealDamage(attacker, target, damage, attackType) {
   } else if (target.isAlive) {
       // Health Check
       if(health <= damage){
-          //Don't let the health drop below 0
-          console.log(attacker.name + " hits " + target.name + " with " + attackType + " for " + health + " damage")
-          console.log(attacker.name + ' knocked out ' + target.name + '!!!')
-          target.health = 0;
-          target.isAlive = false;
+        //Don't let the health drop below 0
+        console.log(attacker.name + " hits " + target.name + " with " + attackType + " for " + damage + " damage (" + health + "=>0)");          
+        console.log(attacker.name + ' knocked out ' + target.name + '!!!')
+        target.health = 0;
+        target.isAlive = false;
       }else{
-          console.log(attacker.name + " hits " + target.name + " with " + attackType + " for " + damage + " damage")
-          target.health = +(health - damage).toFixed(1);
+        console.log(attacker.name + " hits " + target.name + " with " + attackType + " for " + health + " damage (" + health + "=>" + (health - damage) + ')')
+        target.health = +(health - damage).toFixed(1);
       }
       updatePlayer(target);
     } else {
