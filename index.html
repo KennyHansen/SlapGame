@@ -6,17 +6,43 @@
 	<link rel="stylesheet" href="game.css">
 </head>
 <body>
+	
+	<div class="display-bar">
+		<div class="player-health">
+			<div class="health"></div>
+			<div class="health-loss"></div>
+		</div>
+		<!--<img src="http://i295.photobucket.com/albums/mm154/DahJezus/sf4KO.png" alt="" width='256' height='256'>-->
+		<div class="player-health health-inverse">
+			<div class="health"></div>
+			<div class="health-loss"></div>
+		</div>
+	</div>
 	<div class="stage">
-		<div class="player">
-			<button onclick="onSlap()">Slap</button>
+		<div class="player" id="Ryu">
+			<button onclick= "onSlap()">Slap</button>
+			<button onclick= "onPunch()">Punch</button>
+			<button onclick= "onKick()">Kick</button>
+			<button onclick= "onHadouken()"><img src="http://i598.photobucket.com/albums/tt68/xXONEXx/Decorated%20images/hadouken.png" height="80" /></button>
+		</div>
+		<div class="player" id="Ken">
+			<button onclick= "onSlap()">Slap</button>
 			<button onclick= "onPunch()">Punch</button>
 			<button onclick= "onKick()">Kick</button>
 			<button onclick= "onHadouken()"><img src="http://i598.photobucket.com/albums/tt68/xXONEXx/Decorated%20images/hadouken.png" height="80" /></button>
 		</div>
 	</div>
-	<div class="dummy">
-		<h1 id="health">100</h1>
+	<div class="stage">
+		<div class="sprite" id="Ryu">
+			<h1 id="Ryu-health">100</h1>
+		</div>
+		<div class="sprite" id="Ken">
+			<h1 id="Ken-health">120</h1>
+		</div>
 	</div>
+	<!--<audio controls>
+		<source src="sounds/Guile-theme.mp3" type="audio/mpeg" autoplay="autoplay">
+	</audio>-->
 	<script src="game.js"></script>
 </body>
 </html>

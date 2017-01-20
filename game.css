@@ -1,5 +1,5 @@
 body{
-  background: url(http://www.colxi.info/wp-content/uploads/2012/11/Lb2villageoftwilightbg.gif) center center;
+  background: url(http://twistedsifter.files.wordpress.com/2013/05/animated-gifs-of-fighting-game-backgrounds-11.gif?w=640&h=384) center center;
   background-size: cover;
 }
 
@@ -8,8 +8,41 @@ body{
   align-items: center;
   justify-content: space-around;
 }
+
+.display-bar{
+  display:flex;
+  justify-content: space-between;
+}
+
 .player{
   display: flex;
+}
+
+.player-health{ 
+  border: solid 2px white;
+  background-color: yellow;
+  width: 45%;
+  height: 20px;
+}
+.health-inverse {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+.health{
+  color: yellow;
+  width:25%;
+  height:100%;
+}
+
+.health-lost {
+  color: darkred;
+  width:25%;
+  height:100%;
 }
 
 img.invert {
@@ -30,8 +63,11 @@ h1{
 
 .dummy{
   background: url(http://network.mugenguild.com/guild/stances/ss1_bonus.gif) no-repeat;
-  position: absolute;
-  bottom: 20px;
-  left: 48%;
-  height: 130px;
 }
+
+.sprite{
+  margin-top: 35%;
+  padding-bottom: 20px;
+  background: url(http://network.mugenguild.com/guild/stances/ss1_bonus.gif) no-repeat;
+}
+
