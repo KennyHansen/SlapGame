@@ -100,8 +100,7 @@ function dealDamage(attacker, target, damage, attackType) {
       if(health <= damage){
         //Don't let the health drop below 0
         logDamage(attacker, target, attackType, health, false)
-        target.health = 0;
-        target.isAlive = false;
+        killPlayer(target)
       }else{
         logDamage(attacker, target, attackType, damage, true)
         target.health = +(health - damage).toFixed(1);
@@ -143,6 +142,11 @@ function updateHealth(player) {
     var playerHealthId = document.getElementById(player.name)
     var playerHealthTag = playerHealthId.getElementsByTagName("span");
     playerHealthTag[0].style = "width:" + ((player.health/player.maxHealth)*100) + "%"
+}
+
+function killPlayer(player) {
+    player.health = 0;
+    player.isAlive = false;
 }
 
 function playSound(soundFile) {
