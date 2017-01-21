@@ -1,31 +1,28 @@
-var health = 100
+// var health = 100
 
-var ken = {
-  name: 'Ken',
-  health: 120,
-  attacks: {
-    kick: 20,
-    punch: 15,
-    uppercut: 30,
-    hadouken: 40
-  },
-  mobility: 35,
-  isAlive: true,
-  sprite:'ken.png'
-}
 
-var ryu = {
-  name: 'Ryu',
-  health: 100,
-  attacks: {
-    kick: 15,
-    punch: 10,
-    uppercut: 25,
-    hadouken: 60
-  },
-  mobility: 55,
-  isAlive: true,
-  sprite:'ryu.png'
+
+
+// TODO (for fun?)
+
+// 1) refactor health into healthbars
+// 2) make sprites play with different moves/states
+// 3) add cool sounds
+// 4) change buttons to actual keystrokes for movement and attacks
+// 5) make hitboxes a thing
+// 6) make new players spawn after defeating an old one
+
+
+// Constructors
+var Player = function(name, health, attacks, mobility) {
+  this.name = name;
+  this.health = health;
+  this.maxHealth = health;
+  this.attacks = attacks;
+  this.mobility = mobility;
+  this.equippedItems = [];
+  this.isAlive = true;
+  this.sprite = name + '.png';
 }
 
 var Item = function(itemName, itemValue, itemDescription){
@@ -34,6 +31,41 @@ var Item = function(itemName, itemValue, itemDescription){
     this.description = itemDescription;
 }
 
+
+// Variables
+// var ken = {
+//   name: 'Ken',
+//   health: 120,
+//   attacks: {
+//     kick: 20,
+//     punch: 15,
+//     uppercut: 30,
+//     hadouken: 40
+//   },
+//   equippedItems:[],
+//   mobility: 35,
+//   isAlive: true,
+//   sprite:'ken.png'
+// }
+
+// var ryu = {
+//   name: 'Ryu',
+//   health: 100,
+//   attacks: {
+//     kick: 15,
+//     punch: 10,
+//     uppercut: 25,
+//     hadouken: 60
+//   },
+//   mobility: 55,
+//   equippedItems:[],
+//   isAlive: true,
+//   sprite:'ryu.png'
+// }
+
+var ryu = new Player('Ryu', 100, {kick:15, punch:10, uppercut:25, hadouken:60}, 55)
+var ken = new Player('Ken', 120, {kick:20, punch:15, uppercut:30, hadouken:40}, 35)
+
 var items = {
     shield1:new Item("Shield of Lesser Blocking", {block:2}, "This blocks 2 damage"),
     shield2:new Item("Shield of Blocking", {block:5}, "This blocks 5 damage"),
@@ -41,11 +73,13 @@ var items = {
     shield4:new Item("Shield of Master Blocking", {block:20, bonusHealth:50}, "This blocks 20 damage")
 }
 
-function giveItem(player, itemName) {
-  debugger
+
+// Functions
+function equipItem(player, itemName) {
   for(var item in items) {
     if (items[item] == itemName || item == itemName) {
-      player.item = items[item]
+      player.equippedItems.push(items[item])
+      console.log(player.name + ' has equipped ' + items[item].name)
       return
     }
   }
@@ -73,26 +107,19 @@ function onHadouken(attacker, target){
 
 function dealDamage(attacker, target, damage, attackType) {
   var health = target.health
-
   if (!attacker.isAlive) {
     console.log(attacker.name + ' is down, the fight is over!')
   } else if (target.isAlive) {
       // Add damage filters
-      if (target.item && target.item.value.block) {
-        block = target.item.value.block
-        damage = damage - block
-        if (damage < 0) damage = 0; 
-      }
-
+      damage = filterDamage(target, damage)
       // Health Check
       if(health <= damage){
         //Don't let the health drop below 0
-        console.log(attacker.name + " hits " + target.name + " with " + attackType + " for " + health + " damage (" + health + "=>0)");          
-        console.log(attacker.name + ' knocked out ' + target.name + '!!!')
+        logDamage(attacker, target, attackType, health, false)
         target.health = 0;
         target.isAlive = false;
       }else{
-        console.log(attacker.name + " hits " + target.name + " with " + attackType + " for " + damage + " damage (" + health + "=>" + (health - damage) + ')')
+        logDamage(attacker, target, attackType, damage, true)
         target.health = +(health - damage).toFixed(1);
       }
       updatePlayer(target);
@@ -101,8 +128,35 @@ function dealDamage(attacker, target, damage, attackType) {
     }
 }
 
+function filterDamage(target, damage) {
+  var block = 0
+  if (target.equippedItems) {
+    for (var i = 0; i < target.equippedItems.length; i++) {
+      var item = target.equippedItems[i];
+      if (item.value.block) block += item.value.block;
+    }
+  }
+  damage = damage - block
+  if (damage < 0) damage = 0; 
+  return damage
+}
+
+function logDamage(attacker, target, attackType, damage, isAlive) {
+  console.log(attacker.name + " hits " + target.name + " with " + attackType + " for " + damage + " damage (" + target.health + "=>" + (target.health-damage)+")");   
+  if(!isAlive) {
+    console.log(attacker.name + ' knocked out ' + target.name + '!!!')
+  }
+}
+
 function updatePlayer(player) {
     var healthElem = document.getElementById(player.name + '-health').innerHTML = player.health;
+
+    var playerHealthId = document.getElementById(player.name)
+    var playerHealthTag = playerHealthId.getElementsByTagName("span");
+
+
+    playerHealthTag[0].style = "width:" + ((player.health/player.maxHealth)*100) + "%"
+
 }
 
 function playSound(soundFile) {

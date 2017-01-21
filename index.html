@@ -6,16 +6,15 @@
 	<link rel="stylesheet" href="game.css">
 </head>
 <body>
-	
 	<div class="display-bar">
-		<div class="player-health">
-			<div class="health"></div>
-			<div class="health-loss"></div>
+		<div class="player-health" id="Ryu">
+			<span class="health" ></span>
+			<!--<span class="health-loss"></span>-->
 		</div>
 		<!--<img src="http://i295.photobucket.com/albums/mm154/DahJezus/sf4KO.png" alt="" width='256' height='256'>-->
-		<div class="player-health health-inverse">
-			<div class="health"></div>
-			<div class="health-loss"></div>
+		<div class="player-health health-inverse" id="Ken">
+			<span class="health" ></span>
+			<!--<span class="health-loss"></span>-->
 		</div>
 	</div>
 	<div class="stage">
@@ -24,7 +23,7 @@
 			<button onclick= "onPunch(ryu,ken)">Punch</button>
 			<button onclick= "onKick(ryu,ken)">Kick</button>
 			<button onclick= "onHadouken(ryu,ken)"><img src="http://i598.photobucket.com/albums/tt68/xXONEXx/Decorated%20images/hadouken.png" height="80" /></button>
-			<button onclick= "giveItem(ryu,items.shield1)">Equip Shield</button>
+			<button onclick= "equipItem(ryu,items.shield1)">Equip Shield</button>
 		</div>
 		<div class="player" id="Ken">
 			<button onclick= "onSlap(ken,ryu)">Slap</button>

@@ -1,12 +1,14 @@
 body{
-  background: url(http://twistedsifter.files.wordpress.com/2013/05/animated-gifs-of-fighting-game-backgrounds-11.gif?w=640&h=384) center center;
+  background: url(http://twistedsifter.files.wordpress.com/2013/05/animated-gifs-of-fighting-game-backgrounds-11.gif?w=640&h=384) center center no-repeat;
   background-size: cover;
+  max-height: 750;
 }
+
 
 .stage{
   display:flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .display-bar{
@@ -19,11 +21,26 @@ body{
 }
 
 .player-health{ 
-  border: solid 2px white;
   background-color: yellow;
   width: 45%;
   height: 20px;
+  border: solid 2px white;
+	position: relative;
+	background: darkred;
+	box-shadow: inset 0 -1px 1px rgba(255,255,255,0.7);
 }
+
+.player-health > span {
+  display: block;
+  height: 100%;
+  background-color:yellow;
+  box-shadow: 
+    inset 0 2px 9px rgba(255,255,255,0.9),
+    inset 0 -2px 6px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
 .health-inverse {
   -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);
@@ -31,18 +48,6 @@ body{
   transform: scaleX(-1);
   filter: FlipH;
   -ms-filter: "FlipH";
-}
-
-.health{
-  color: yellow;
-  width:25%;
-  height:100%;
-}
-
-.health-lost {
-  color: darkred;
-  width:25%;
-  height:100%;
 }
 
 img.invert {
