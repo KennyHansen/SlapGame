@@ -149,7 +149,7 @@ function logDamage(attacker, target, attackType, damage, isAlive) {
 }
 
 function updatePlayer(player) {
-    var healthElem = document.getElementById(player.name + '-health').innerHTML = player.health;
+    // var healthElem = document.getElementById(player.name + '-health').innerHTML = player.health;
 
     var playerHealthId = document.getElementById(player.name)
     var playerHealthTag = playerHealthId.getElementsByTagName("span");
