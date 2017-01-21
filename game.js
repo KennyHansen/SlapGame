@@ -21,6 +21,7 @@ var Player = function(name, health, attacks, mobility) {
   this.attacks = attacks;
   this.mobility = mobility;
   this.equippedItems = [];
+  this.stashedItems = [];
   this.isAlive = true;
   this.sprite = name + '.png';
 }
@@ -31,38 +32,7 @@ var Item = function(itemName, itemValue, itemDescription){
     this.description = itemDescription;
 }
 
-
 // Variables
-// var ken = {
-//   name: 'Ken',
-//   health: 120,
-//   attacks: {
-//     kick: 20,
-//     punch: 15,
-//     uppercut: 30,
-//     hadouken: 40
-//   },
-//   equippedItems:[],
-//   mobility: 35,
-//   isAlive: true,
-//   sprite:'ken.png'
-// }
-
-// var ryu = {
-//   name: 'Ryu',
-//   health: 100,
-//   attacks: {
-//     kick: 15,
-//     punch: 10,
-//     uppercut: 25,
-//     hadouken: 60
-//   },
-//   mobility: 55,
-//   equippedItems:[],
-//   isAlive: true,
-//   sprite:'ryu.png'
-// }
-
 var ryu = new Player('Ryu', 100, {kick:15, punch:10, uppercut:25, hadouken:60}, 55)
 var ken = new Player('Ken', 120, {kick:20, punch:15, uppercut:30, hadouken:40}, 35)
 
@@ -75,12 +45,25 @@ var items = {
 
 
 // Functions
-function equipItem(player, itemName) {
-  for(var item in items) {
-    if (items[item] == itemName || item == itemName) {
-      player.equippedItems.push(items[item])
-      console.log(player.name + ' has equipped ' + items[item].name)
-      return
+function equipItem(player, itemKey) {
+  var item1 = items[itemKey]
+  if (items[itemKey] == item1 || items[itemKey].name == itemKey) {
+      searchItems(player, item1)
+      player.equippedItems.push(items[itemKey])
+      console.log(player.name + ' has equipped ' + items[itemKey].name)
+    }
+}
+
+function searchItems(player, item) {
+  var equippedItems = player.equippedItems
+  var stashedItems = player.stashedItems
+  var itemType = item.type 
+  for (var i = 0; i < equippedItems.length; i++) {
+    var equippedItem = equippedItems[i];
+    if (equippedItem.type == itemType) {
+      equippedItems.splice(i, 1)
+      stashedItems.push[equippedItem]
+      console.log("Replaced " + equippedItem.name + " with " + item.name)
     }
   }
 }
