@@ -5,7 +5,7 @@
 
 // TODO (for fun?)
 
-// 1) refactor health into healthbars
+// 1) (DONE) refactor health into healthbars 
 // 2) make sprites play with different moves/states
 // 3) add cool sounds
 // 4) change buttons to actual keystrokes for movement and attacks
@@ -24,6 +24,7 @@ var Player = function(name, health, attacks, mobility) {
   this.stashedItems = [];
   this.isAlive = true;
   this.sprite = name + '.png';
+  this.hits = 0;
 }
 
 var Item = function(itemName, itemValue, itemDescription){
@@ -50,7 +51,7 @@ function equipItem(player, itemKey) {
   if (items[itemKey] == item1 || items[itemKey].name == itemKey) {
       searchItems(player, item1)
       player.equippedItems.push(items[itemKey])
-      console.log(player.name + ' has equipped ' + items[itemKey].name)
+      console.log(player.name + ' has equipped ' + items[itemKey].name + "!")
     }
 }
 
@@ -63,7 +64,7 @@ function searchItems(player, item) {
     if (equippedItem.type == itemType) {
       equippedItems.splice(i, 1)
       stashedItems.push[equippedItem]
-      console.log("Replaced " + equippedItem.name + " with " + item.name)
+      console.log(player.name + " has moved " + equippedItem.name + " into their stash.")
     }
   }
 }
@@ -105,7 +106,8 @@ function dealDamage(attacker, target, damage, attackType) {
         logDamage(attacker, target, attackType, damage, true)
         target.health = +(health - damage).toFixed(1);
       }
-      updatePlayer(target);
+      updateHits(attacker)
+      updateHealth(target);
     } else {
       console.log(target.name + ' is down, the fight is over!')
     }
@@ -131,15 +133,16 @@ function logDamage(attacker, target, attackType, damage, isAlive) {
   }
 }
 
-function updatePlayer(player) {
-    // var healthElem = document.getElementById(player.name + '-health').innerHTML = player.health;
+function updateHits(player) {
+    player.hits += 1;
+    var playerHitsId = document.getElementById(player.name + '-hits').innerHTML = player.hits
+}
 
+function updateHealth(player) {
+    // var healthElem = document.getElementById(player.name + '-health').innerHTML = player.health;
     var playerHealthId = document.getElementById(player.name)
     var playerHealthTag = playerHealthId.getElementsByTagName("span");
-
-
     playerHealthTag[0].style = "width:" + ((player.health/player.maxHealth)*100) + "%"
-
 }
 
 function playSound(soundFile) {

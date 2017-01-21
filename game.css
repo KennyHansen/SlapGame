@@ -16,6 +16,17 @@ body{
   justify-content: space-between;
 }
 
+.display-stats {
+  background-color: gray;
+  opacity: 0.8;
+  padding: 0px 40px;
+  border: solid 1px black;
+}
+
+.display-stats>h4 {
+  color:white;
+}
+
 .player{
   display: flex;
 }
@@ -41,7 +52,7 @@ body{
   overflow: hidden;
 }
 
-.health-inverse {
+.inverse {
   -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);
   -webkit-transform: scaleX(-1);
