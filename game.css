@@ -9,7 +9,7 @@ body{
 }
 
 .stage{
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
 }
@@ -58,17 +58,23 @@ body{
 	position: relative;
 	background: darkred;
 	box-shadow: inset 0 -1px 1px rgba(255,255,255,0.7);
+
+  transition: width .5s linear;
 }
 
 .player-health > span {
   display: block;
   height: 100%;
+  width: 100%;
   background-color:yellow;
   box-shadow: 
     inset 0 2px 9px rgba(255,255,255,0.9),
     inset 0 -2px 6px rgba(0,0,0,0.2);
   position: relative;
   overflow: hidden;
+
+  transition: width .25s linear;
+  
 }
 
 .inverse {

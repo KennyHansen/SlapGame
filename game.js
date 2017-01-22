@@ -87,17 +87,17 @@ function onKick(attacker, target){
 }
 
 function onHadouken(attacker, target){
-  dealDamage(attacker, target, attacker.attacks['hadouken'], 'HADOUKEN')
+  dealDamage(attacker, target, attacker.attacks['hadouken'], 'HADOUKEN', true)
   
 }
 
-function dealDamage(attacker, target, damage, attackType) {
+function dealDamage(attacker, target, damage, attackType, hasSound) {
   var health = target.health
   if (!attacker.isAlive) {
     console.log(attacker.name + ' is down, the fight is over!')
   } else if (target.isAlive) {
       // Add damage filters
-      playSound(attackType)
+      if (hasSound) playSound(attackType);
       damage = filterDamage(target, damage)
       // Health Check
       if(health <= damage){
