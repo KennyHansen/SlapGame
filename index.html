@@ -8,17 +8,15 @@
 <body>
 	<div class="display-bar">
 		<h2 class="player-name" id="Ryu-name">Ryu</h2>
-		<!--<img src="http://i295.photobucket.com/albums/mm154/DahJezus/sf4KO.png" alt="" width='256' height='256'>-->
 		<h2 class="player-name" id="Ken-name">Ken</h2>
 	</div>
 	<div class="display-bar">
 		<div class="player-health" id="Ryu">
-			<span class="health" ></span>
+			<span></span>
 			<!--<span class="health-loss"></span>-->
 		</div>
-		<!--<img src="http://i295.photobucket.com/albums/mm154/DahJezus/sf4KO.png" alt="" width='256' height='256'>-->
 		<div class="player-health inverse" id="Ken">
-			<span class="health" ></span>
+			<span></span>
 			<!--<span class="health-loss"></span>-->
 		</div>
 	</div>
@@ -28,13 +26,27 @@
 			<button onclick= "onPunch(ryu,ken)">Punch</button>
 			<button onclick= "onKick(ryu,ken)">Kick</button>
 			<button onclick= "onHadouken(ryu,ken)"><img src="http://i598.photobucket.com/albums/tt68/xXONEXx/Decorated%20images/hadouken.png" height="80" /></button>
-			<button onclick= "equipItem(ryu,'shield1')">Equip Shield</button>
+			
 		</div>
 		<div class="player" id="Ken">
 			<button onclick= "onSlap(ken,ryu)">Slap</button>
 			<button onclick= "onPunch(ken,ryu)">Punch</button>
 			<button onclick= "onKick(ken,ryu)">Kick</button>
 			<button onclick= "onHadouken(ken,ryu)"><img src="http://i598.photobucket.com/albums/tt68/xXONEXx/Decorated%20images/hadouken.png" height="80" /></button>
+		</div>
+	</div>
+	<div class="stage">	
+		<div class="player" id="Ryu-items">
+			<button onclick= "equipItem(ryu,'shield1')">Equip Lesser Shield</button>
+			<button onclick= "equipItem(ryu,'shield2')">Equip Shield</button>
+			<button onclick= "equipItem(ryu,'shield3')">Equip Greater Shield</button>
+			<button onclick= "equipItem(ryu,'shield4')">Equip Master Shield</button>
+		</div>
+		<div class="player" id="Ken-items">
+			<button onclick= "equipItem(ken,'shield1')">Equip Lesser Shield</button>
+			<button onclick= "equipItem(ken,'shield2')">Equip Shield</button>
+			<button onclick= "equipItem(ken,'shield3')">Equip Greater Shield</button>
+			<button onclick= "equipItem(ken,'shield4')">Equip Master Shield</button>
 		</div>
 	</div>
 	<div class="display-bar">

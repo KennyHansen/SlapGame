@@ -41,7 +41,9 @@ var items = {
     shield1:new Item("Shield of Lesser Blocking", {block:2}, "This blocks 2 damage"),
     shield2:new Item("Shield of Blocking", {block:5}, "This blocks 5 damage"),
     shield3:new Item("Shield of Greater Blocking", {block:12}, "This blocks 12 damage"),
-    shield4:new Item("Shield of Master Blocking", {block:20, bonusHealth:50}, "This blocks 20 damage")
+    shield4:new Item("Shield of Master Blocking", {block:20, bonusHealth:50}, "This blocks 20 damage"),
+
+    heal1:new Item("Choccy Milk", {heal:10}, "Doot")
 }
 
 
@@ -139,7 +141,7 @@ function updateHits(player) {
 
 function updateHealth(player) {
     // var healthElem = document.getElementById(player.name + '-health').innerHTML = player.health;
-    var playerHealthId = document.getElementById(player.name)
+    var playerHealthId = document.getElementById(player.name);
     var playerHealthTag = playerHealthId.getElementsByTagName("span");
     playerHealthTag[0].style = "width:" + ((player.health/player.maxHealth)*100) + "%"
 }

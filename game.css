@@ -4,7 +4,6 @@ body{
   max-height: 750;
 }
 
-
 .stage{
   display:flex;
   align-items: center;
@@ -29,6 +28,7 @@ body{
 
 .player {
   display: flex;
+  justify-content: space-between;
 }
 
 .player-name {
@@ -37,8 +37,7 @@ body{
   margin: 0px;
 }
 
-.player-health{ 
-  background-color: yellow;
+.player-health { 
   width: 45%;
   height: 20px;
   border: solid 2px white;
