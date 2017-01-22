@@ -1,7 +1,11 @@
 body{
+  max-width: 1050px;
+  margin:0 auto;
+}
+
+.canvas {
   background: url(http://twistedsifter.files.wordpress.com/2013/05/animated-gifs-of-fighting-game-backgrounds-11.gif?w=640&h=384) center center no-repeat;
   background-size: cover;
-  max-height: 750;
 }
 
 .stage{
@@ -29,6 +33,16 @@ body{
 .player {
   display: flex;
   justify-content: space-between;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flex-inverse {
+  flex-direction: row-reverse;
 }
 
 .player-name {
