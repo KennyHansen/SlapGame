@@ -6,68 +6,70 @@
 	<link rel="stylesheet" href="game.css">
 </head>
 <body>
-	<div class="display-bar">
-		<h2 class="player-name" id="Ryu-name">Ryu</h2>
-		<h2 class="player-name" id="Ken-name">Ken</h2>
-	</div>
-	<div class="display-bar">
-		<div class="player-health" id="Ryu">
-			<span></span>
-			<!--<span class="health-loss"></span>-->
+	<div class="canvas">
+		<div class="display-bar">
+			<h2 class="player-name" id="Ryu-name">Ryu</h2>
+			<h2 class="player-name" id="Ken-name">Ken</h2>
 		</div>
-		<div class="player-health inverse" id="Ken">
-			<span></span>
-			<!--<span class="health-loss"></span>-->
+		<div class="display-bar">
+			<div class="player-health" id="Ryu">
+				<span></span>
+				<!--<span class="health-loss"></span>-->
+			</div>
+			<div class="player-health inverse" id="Ken">
+				<span></span>
+				<!--<span class="health-loss"></span>-->
+			</div>
 		</div>
-	</div>
-	<div class="stage">
-		<div class="player" id="Ryu">
-			<button onclick= "onSlap(ryu,ken)">Slap</button>
-			<button onclick= "onPunch(ryu,ken)">Punch</button>
-			<button onclick= "onKick(ryu,ken)">Kick</button>
-			<button onclick= "onHadouken(ryu,ken)"><img src="http://i598.photobucket.com/albums/tt68/xXONEXx/Decorated%20images/hadouken.png" height="80" /></button>
-			
+		<div class="stage">
+			<div class="player" id="Ryu">
+				<button onclick= "onSlap(ryu,ken)">Slap</button>
+				<button onclick= "onPunch(ryu,ken)">Punch</button>
+				<button onclick= "onKick(ryu,ken)">Kick</button>
+				<button onclick= "onHadouken(ryu,ken)"><img src="http://i598.photobucket.com/albums/tt68/xXONEXx/Decorated%20images/hadouken.png" height="80" /></button>
+				
+			</div>
+			<div class="player flex-inverse" id="Ken">
+				<button onclick= "onSlap(ken,ryu)">Slap</button>
+				<button onclick= "onPunch(ken,ryu)">Punch</button>
+				<button onclick= "onKick(ken,ryu)">Kick</button>
+				<button onclick= "onHadouken(ken,ryu)"><img src="http://i598.photobucket.com/albums/tt68/xXONEXx/Decorated%20images/hadouken.png" height="80" /></button>
+			</div>
 		</div>
-		<div class="player" id="Ken">
-			<button onclick= "onSlap(ken,ryu)">Slap</button>
-			<button onclick= "onPunch(ken,ryu)">Punch</button>
-			<button onclick= "onKick(ken,ryu)">Kick</button>
-			<button onclick= "onHadouken(ken,ryu)"><img src="http://i598.photobucket.com/albums/tt68/xXONEXx/Decorated%20images/hadouken.png" height="80" /></button>
+		<div class="stage">	
+			<div class="items" id="Ryu-items">
+				<button onclick= "equipItem(ryu,'shield1')">Equip Lesser Shield</button>
+				<button onclick= "equipItem(ryu,'shield2')">Equip Shield</button>
+				<button onclick= "equipItem(ryu,'shield3')">Equip Greater Shield</button>
+				<button onclick= "equipItem(ryu,'shield4')">Equip Master Shield</button>
+			</div>
+			<div class="items" id="Ken-items">
+				<button onclick= "equipItem(ken,'shield1')">Equip Lesser Shield</button>
+				<button onclick= "equipItem(ken,'shield2')">Equip Shield</button>
+				<button onclick= "equipItem(ken,'shield3')">Equip Greater Shield</button>
+				<button onclick= "equipItem(ken,'shield4')">Equip Master Shield</button>
+			</div>
 		</div>
-	</div>
-	<div class="stage">	
-		<div class="player" id="Ryu-items">
-			<button onclick= "equipItem(ryu,'shield1')">Equip Lesser Shield</button>
-			<button onclick= "equipItem(ryu,'shield2')">Equip Shield</button>
-			<button onclick= "equipItem(ryu,'shield3')">Equip Greater Shield</button>
-			<button onclick= "equipItem(ryu,'shield4')">Equip Master Shield</button>
+		<div class="display-bar">
+			<div class="display-stats">
+				<h4>Hits: <a id="Ryu-hits">0</a></h4>
+				<h4 class="winner"></h4>
+			</div>
+			<div class="display-stats">
+				<h4>Hits: <a id="Ken-hits">0</a></h4>
+				<h4 class="winner"></h4>
+			</div>
 		</div>
-		<div class="player" id="Ken-items">
-			<button onclick= "equipItem(ken,'shield1')">Equip Lesser Shield</button>
-			<button onclick= "equipItem(ken,'shield2')">Equip Shield</button>
-			<button onclick= "equipItem(ken,'shield3')">Equip Greater Shield</button>
-			<button onclick= "equipItem(ken,'shield4')">Equip Master Shield</button>
-		</div>
-	</div>
-	<div class="display-bar">
-		<div class="display-stats">
-			<h4>Hits: <a id="Ryu-hits">0</a></h4>
-			<h4 class="winner"></h4>
-		</div>
-		<div class="display-stats">
-			<h4>Hits: <a id="Ken-hits">0</a></h4>
-			<h4 class="winner"></h4>
-		</div>
-	</div>
-	<div class="stage">
-		<div class="sprite" id="Ryu">
-			<img class="invert" src="http://cdn.wikimg.net/strategywiki/images/3/31/SF1_Ryu.gif" alt="" height="180">
-			<!--<h1 id="Ryu-health">100</h1>-->
-			
-		</div>
-		<div class="sprite" id="Ken">
-			<img src="http://cdn.wikimg.net/strategywiki/images/0/08/SF1_Ken.gif" alt="" height="180">
-			<!--<h1 id="Ken-health">120</h1>-->
+		<div class="stage">
+			<div class="sprite" id="Ryu">
+				<img class="invert" src="http://cdn.wikimg.net/strategywiki/images/3/31/SF1_Ryu.gif" alt="" height="180">
+				<!--<h1 id="Ryu-health">100</h1>-->
+				
+			</div>
+			<div class="sprite" id="Ken">
+				<img src="http://cdn.wikimg.net/strategywiki/images/0/08/SF1_Ken.gif" alt="" height="180">
+				<!--<h1 id="Ken-health">120</h1>-->
+			</div>
 		</div>
 	</div>
 	<!--<audio controls>
