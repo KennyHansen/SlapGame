@@ -54,7 +54,14 @@ function equipItem(player, itemKey) {
       searchItems(player, item1)
       player.equippedItems.push(items[itemKey])
       console.log(player.name + ' has equipped ' + items[itemKey].name + "!")
-    }
+  }
+}
+
+function useItem(player, itemKey) {
+  var item1 = items[itemKey]
+  if (item1.value.heal) {
+    healDamage(player, item1.value.heal, item1.name)
+  }
 }
 
 function searchItems(player, item) {
@@ -88,7 +95,40 @@ function onKick(attacker, target){
 
 function onHadouken(attacker, target){
   dealDamage(attacker, target, attacker.attacks['hadouken'], 'HADOUKEN', true)
-  
+}
+
+function onReset(player1, player2) {
+  player1.health = player1.maxHealth
+  player1.hits = 0;
+  player1.equippedItems = [];
+  player1.isAlive = true;
+
+  player2.health = player2.maxHealth;
+  player2.hits = 0;
+  player2.equippedItems = [];
+  player2.isAlive = true;
+
+  updateHealth(player1)
+  updateHits(player1)
+  updateHealth(player2)
+  updateHits(player2)
+
+  console.log("Game is Reset")
+
+}
+
+function healDamage(target, heal, healType) {
+    var health = target.health
+  if (!target.isAlive) {
+    console.log(target.name + ' is down, the fight is over!')
+  } else if (target.isAlive) {
+      if (target.health + heal > target.maxHealth) {
+        heal = target.maxHealth - target.health 
+      }
+      logHealing(target, heal, healType)
+      target.health+= heal
+      updateHealth(target)
+  } else {}
 }
 
 function dealDamage(attacker, target, damage, attackType, hasSound) {
@@ -126,6 +166,11 @@ function filterDamage(target, damage) {
   damage = damage - block
   if (damage < 0) damage = 0; 
   return damage
+}
+
+function logHealing(target, heal, healType) {
+  console.log(target.name + " uses " + healType +  " to restore " + heal + " health (" + (target.health) + "=>"+ (target.health + heal) + ")");   
+
 }
 
 function logDamage(attacker, target, attackType, damage, isAlive) {

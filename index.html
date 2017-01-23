@@ -16,6 +16,7 @@
 				<span></span>
 				<!--<span class="health-loss"></span>-->
 			</div>
+			<button onclick="onReset(ryu,ken)">Reset</button>
 			<div class="player-health inverse" id="Ken">
 				<span></span>
 				<!--<span class="health-loss"></span>-->
@@ -27,7 +28,6 @@
 				<button onclick= "onPunch(ryu,ken)">Punch</button>
 				<button onclick= "onKick(ryu,ken)">Kick</button>
 				<button onclick= "onHadouken(ryu,ken)"><img src="http://i598.photobucket.com/albums/tt68/xXONEXx/Decorated%20images/hadouken.png" height="80" /></button>
-				
 			</div>
 			<div class="player flex-inverse" id="Ken">
 				<button onclick= "onSlap(ken,ryu)">Slap</button>
@@ -42,12 +42,15 @@
 				<button onclick= "equipItem(ryu,'shield2')">Equip Shield</button>
 				<button onclick= "equipItem(ryu,'shield3')">Equip Greater Shield</button>
 				<button onclick= "equipItem(ryu,'shield4')">Equip Master Shield</button>
+				<button onclick= "useItem(ryu,'heal1')">Drink Choccy Milk</button>
+
 			</div>
 			<div class="items" id="Ken-items">
 				<button onclick= "equipItem(ken,'shield1')">Equip Lesser Shield</button>
 				<button onclick= "equipItem(ken,'shield2')">Equip Shield</button>
 				<button onclick= "equipItem(ken,'shield3')">Equip Greater Shield</button>
 				<button onclick= "equipItem(ken,'shield4')">Equip Master Shield</button>
+				<button onclick= "useItem(ken,'heal1')">Drink Choccy Milk</button>
 			</div>
 		</div>
 		<div class="display-bar">
