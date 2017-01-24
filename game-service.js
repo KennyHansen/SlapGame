@@ -108,9 +108,19 @@ var GameService = function () {
         }
     }
 
+    dataStore.reset = function() {
+        players.ryu.health = players.ryu.maxHealth
+        players.ken.health = players.ken.maxHealth
+
+        players.ryu.hits = 0
+        players.ken.hits = 0
+
+        players.ryu.isAlive = true
+        players.ken.isAlive = true
+    }
+
     var searchItems = function(playerName, item) {
         var player = players[playerName]
-        debugger
         var equippedItems = player.equippedItems
         var stashedItems = player.stashedItems
         var itemType = item.type
@@ -126,8 +136,8 @@ var GameService = function () {
 
 
     var updateHits = function(playerName) {
-        players[playerName].hits += 1;
-
+        var player = players[playerName]
+        player.hits += 1;
     }
 
     var healDamage = function(target, heal, healType) {

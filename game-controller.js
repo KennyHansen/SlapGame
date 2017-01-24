@@ -29,7 +29,10 @@ var GameController = function () {
         player2.equippedItems = [];
         player2.isAlive = true;
 
+        game.reset()
+
         console.log("Game is Reset")
+        draw()
     }
 
     function draw() {
@@ -50,7 +53,7 @@ var GameController = function () {
         var playerHealthId = document.getElementById("Ken-health");
         var playerHealthTag = playerHealthId.getElementsByTagName("span");
         playerHealthTag[0].style = "width:" + healthPercent2 + "%"
-        var playerHitsId = document.getElementById('Ryu-hits').innerHTML = hits2
+        var playerHitsId = document.getElementById('Ken-hits').innerHTML = hits2
     }
 
 }
