@@ -129,7 +129,6 @@ var GameService = function () {
     }
 
     var counterAttack = function(target, attacker) {
-        debugger
         var damageType = getRandomAttack(target)
         var targetName = target.name.toLowerCase()
         var attackerName = attacker.name.toLowerCase()
