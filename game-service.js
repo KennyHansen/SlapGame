@@ -117,6 +117,11 @@ var GameService = function () {
 
         players.ryu.isAlive = true
         players.ken.isAlive = true
+
+        players.ryu.equippedItems = []
+        players.ryu.stashedItems = []
+        players.ken.equippedItems = []
+        players.ken.stashedItems = []
     }
 
     var searchItems = function(playerName, item) {
