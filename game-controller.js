@@ -19,16 +19,6 @@ var GameController = function () {
     }
 
     this.onReset = function(player1, player2) {
-        player1.health = player1.maxHealth
-        player1.hits = -1;
-        player1.equippedItems = [];
-        player1.isAlive = true;
-
-        player2.health = player2.maxHealth;
-        player2.hits = -1;
-        player2.equippedItems = [];
-        player2.isAlive = true;
-
         game.reset()
 
         console.log("Game is Reset")

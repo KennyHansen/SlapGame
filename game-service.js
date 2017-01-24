@@ -7,6 +7,7 @@
 // 4) change buttons to actual keystrokes for movement and attacks
 // 5) make hitboxes a thing
 // 6) make new players spawn after defeating an old one
+// 7) add a counter-attack method
 
 
 // Constructors
@@ -36,7 +37,6 @@ var GameService = function () {
     var players = {
         ryu: new Player('Ryu', 100, { slap: 1, kick: 15, punch: 10, uppercut: 25, hadouken: 60 }, 55),
         ken: new Player('Ken', 120, { slap: 1, kick: 20, punch: 15, uppercut: 30, hadouken: 40 }, 35)
-
     }
 
     var items = {
@@ -46,6 +46,7 @@ var GameService = function () {
         shield4: new Item("Shield of Master Blocking", { block: 20, bonusHealth: 50 }, "This blocks 20 damage"),
 
         heal1: new Item("Choccy Milk", { heal: 10 }, "Doot")
+
     }
 
     dataStore.getPlayerHealth = function(playerName) {
@@ -74,7 +75,7 @@ var GameService = function () {
         }
     }
     
-    dataStore.dealDamage = function(attackerName, targetName, attackType) {
+    dataStore.dealDamage = function(attackerName, targetName, attackType, counter) {
         var attacker = players[attackerName]
         var target = players[targetName]
         var health = target.health
@@ -95,6 +96,9 @@ var GameService = function () {
                 target.health = +(health - damage).toFixed(1);
             }
             updateHits(attackerName)
+            if (!counter) {
+                counterAttack(target, attacker)
+            }
         } else {
             console.log(target.name + ' is down, the fight is over!')
         }
@@ -122,6 +126,28 @@ var GameService = function () {
         players.ryu.stashedItems = []
         players.ken.equippedItems = []
         players.ken.stashedItems = []
+    }
+
+    var counterAttack = function(target, attacker) {
+        debugger
+        var damageType = getRandomAttack(target)
+        var targetName = target.name.toLowerCase()
+        var attackerName = attacker.name.toLowerCase()
+        dataStore.dealDamage(targetName, attackerName, damageType, true)
+    }
+
+    var getRandomAttack = function(player) {
+        var attacks = player.attacks
+        var randomIndex = Math.floor((Object.keys(attacks).length * Math.random()))
+        var counter = 0
+        
+        for(attack in attacks) {
+            if (counter == randomIndex) {
+                return attack;
+            } else {
+                counter++;
+            }
+        }
     }
 
     var searchItems = function(playerName, item) {
@@ -186,6 +212,12 @@ var GameService = function () {
     function logHealing(target, heal, healType) {
         console.log(target.name + " used " + healType + " to restore " + heal + " health (" + (target.health) + "=>" + (target.health + heal) + ")");
     }
+
+    function nextChallenger(player) {
+
+    }
+
+
 
     function playSound(soundFile) {
         // Plays a sound like Hadouken
